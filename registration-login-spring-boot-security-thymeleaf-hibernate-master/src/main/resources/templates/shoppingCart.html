@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Giỏ hàng</title>
+
+	<style>
+          body{
+    margin-top:20px;
+    background:#eee;
+}
+.ui-w-40 {
+    width: 40px !important;
+    height: auto;
+}
+
+.card{
+    box-shadow: 0 1px 15px 1px rgba(52,40,104,.08);    
+}
+
+.ui-product-color {
+    display: inline-block;
+    overflow: hidden;
+    margin: .144em;
+    width: .875rem;
+    height: .875rem;
+    border-radius: 10rem;
+    -webkit-box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset;
+    vertical-align: middle;
+}
+    </style>
+    
+     <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container px-3 my-5 clearfix">
+    <!-- Shopping cart table -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="text-dark">Giỏ hàng</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered m-0">
+                <thead>
+                  <tr>
+                    <!-- Set columns width -->
+                    <th class="text-center py-3 px-4" style="min-width: 400px;">Sản phẩm</th>
+                    <th class="text-right py-3 px-4" style="width: 100px;">Đơn giá</th>
+                    <th class="text-center py-3 px-4" style="width: 120px;">Số lượng</th>
+                    <th class="text-right py-3 px-4" style="width: 100px;">Tổng tiền</th>
+                    <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
+                  </tr>
+                </thead>
+                <tbody>
+        
+                  <tr th:each="item : ${listCartItem}" >
+                    <td class="p-4">
+                      <div class="media align-items-center">
+                        <img th:src="@{${'/img/product/'+item.image}}" class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                        <div class="media-body">
+                          <a href="#" class="d-block text-dark" th:text="${item.name}">Product 1</a>
+                          
+                        </div>
+                      </div>
+                    </td>
+                    <td style="display:none;" th:text="${item.productId}">id</td>
+                    <td class="text-right font-weight-semibold align-middle p-4"  th:text="${item.price}" ></td>
+                    <td class="align-middle p-4"  th:text="${item.quantity}"></td>
+                    <td class="text-right font-weight-semibold align-middle p-4" th:text="${item.price * item.quantity}" ></td>
+                    <td class="text-center align-middle px-0"><a th:href="@{'/deleteCart/'+	${item.productId}}" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
+                  </tr>
+        
+
+        
+                </tbody>
+              </table>
+            </div>
+            <!-- / Shopping cart table -->
+        
+            <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
+              <div class="mt-4">
+                <label class="text-muted font-weight-normal">Mã giảm giá</label>
+                <input type="text" placeholder="" class="form-control">
+              </div>
+              <div class="d-flex">
+                  <!-- / Shopping cart table 
+                <div class="text-right mt-4 mr-5">
+                  <label class="text-muted font-weight-normal m-0">Discount</label>
+                  <div class="text-large"><strong>0$</strong></div>
+                </div>
+                     Shopping cart table -->
+                <div class="text-right mt-4 mr-5">
+                  <label class="text-muted font-weight-normal m-0">Tổng hóa đơn</label>                  
+                  <div class="text-large" >
+                  	<strong><span th:text="${total}"></span> <span>$</span></strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+            <div class="float-right">
+            <a href="/deleteAll" class="nav-item nav-link active">Hủy toàn bộ</a>
+              <a href="/product-shop" class="nav-item nav-link active">Trở về</a>
+              <button type="button" class="btn btn-lg btn-primary mt-2">Thanh toán</button>
+            </div>
+        
+          </div>
+      </div>
+  </div>
+
+</body>
+</html>

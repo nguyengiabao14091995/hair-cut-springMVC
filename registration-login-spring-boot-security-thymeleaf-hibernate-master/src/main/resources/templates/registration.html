@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Đăng Ký</title>
+<style>
+.gradient-custom {
+/* fallback for old browsers */
+background: #6a11cb;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+}
+</style>
+
+<!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<!-- create navigation bar ( header) -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/login}">Đăng Nhập</a>
+			</div>
+		</div>
+	</nav>
+
+<br>
+<br>
+
+	<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+				
+				<div class="mb-md-5 mt-md-4 pb-5">
+				
+	<!-- Create HTML registration form -->
+
+
+				<!-- success message -->
+				<div th:if="${param.success}">
+					<div class="alert alert-info">Bạn đã đăng ký thành công!</div>
+				</div>
+
+				<h1>Đăng Ký Tài Khoản</h1>
+
+				<form th:action="@{/registration}" method="post" th:object="${user}">
+					<div class="form-group">
+						<label class="control-label" for="firstName">Họ </label>
+						<input id="firstName" class="form-control" th:field="*{firstName}"
+							required autofocus="autofocus" />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="lastName"> Tên</label> <input
+							id="lastName" class="form-control" th:field="*{lastName}"
+							required autofocus="autofocus" />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="email"> Tài khoản </label> <input
+							id="email" class="form-control" th:field="*{email}" required
+							autofocus="autofocus" />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="password"> Mật khẩu</label> <input
+							id="password" class="form-control" type="password"
+							th:field="*{password}" required autofocus="autofocus" />
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6 col-sm-offset-3 ">
+								<input type="submit" name="login-submit" id="login-submit"
+									class="form-control btn btn-success text-dark" value="Đăng ký" />
+									<br>
+									<br>
+						<span>Bạn đã có tài khoản? <a href="/" th:href="@{/login}">Đăng nhập</a></span>
+							</div>
+						</div>
+					</div>
+				</form>
+
+	
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</section>
+</body>
+</html>
